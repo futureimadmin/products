@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: supervisor-agent-service
+  cloud:
+    stream:
+      bindings:
+        supervisor-input:
+          destination: supervisor-events
+          group: supervisor-group
+        supervisor-output:
+          destination: supervisor-events
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+logging:
+  level:
+    com.futureim.generative.im.supervisor: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/supervisor_agent?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

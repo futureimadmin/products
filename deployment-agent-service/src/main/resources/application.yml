@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: deployment-agent-service
+  cloud:
+    stream:
+      bindings:
+        deployment-input:
+          destination: deployment-events
+          group: deployment-group
+        deployment-output:
+          destination: deployment-events
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+
+server:
+  port: 8090
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+logging:
+  level:
+    com.futureim.generative.im.deployment: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/deployment_agent?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

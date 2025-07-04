@@ -1,0 +1,91 @@
+spring:
+  application:
+    name: coding-agent-service
+  cloud:
+    stream:
+      bindings:
+        coding-input:
+          destination: coding-events
+          group: coding-group
+        coding-output:
+          destination: coding-events
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+    task:
+      execution:
+        pool:
+          core-size: 5
+          max-size: 10
+          queue-capacity: 100
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: coding-agent-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+kafka:
+  topics:
+    supervisor:
+      name: supervisor.notifications
+      partitions: 3
+      replication-factor: 1
+    testing:
+      name: testing.notifications
+      partitions: 3
+      replication-factor: 1
+
+server:
+  port: 8084
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+logging:
+  level:
+    com.futureim.generative.im.coding: DEBUG
+
+llm:
+  prompts:
+    code: |
+      You are a professional software developer. Generate code based on these requirements:
+      Requirements: %s
+      Context: %s
+      Generate complete, production-ready code with proper error handling and documentation.
+      Use modern coding practices and include all necessary imports.
+      Return only the code, no explanations.
+    tests: |
+      You are a professional software developer. Generate comprehensive unit and integration tests for the following requirements and context:
+      Requirements: %s
+      Context: %s
+      Use modern testing frameworks and best practices. Return only the test code, no explanations.
+    database: |
+      You are a professional DevOps engineer. Generate the necessary scripts or configuration to set up the database for the following application requirements and context:
+      Requirements: %s
+      Context: %s
+      Provide production-ready database setup scripts (SQL, ORM migrations, or configuration files as appropriate). Return only the code or configuration, no explanations.
+    environment: |
+      You are a professional DevOps engineer. Generate the necessary scripts and instructions to set up the development environment for the following application requirements and context:
+      Requirements: %s
+      Context: %s
+      Provide production-ready environment setup scripts (Dockerfile, docker-compose, shell scripts, or configuration files as appropriate). Return only the code or configuration, no explanations.
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:coding-agent;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update

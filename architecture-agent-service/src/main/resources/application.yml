@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: architecture-agent-service
+  cloud:
+    stream:
+      bindings:
+        architecture-input:
+          destination: architecture-events
+          group: architecture-group
+        architecture-output:
+          destination: architecture-events
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+
+server:
+  port: 8083
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+logging:
+  level:
+    com.futureim.generative.im.architecture: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:architecture-agent;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update

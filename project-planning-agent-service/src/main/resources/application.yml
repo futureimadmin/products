@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: project-planning-agent-service
+  cloud:
+    stream:
+      bindings:
+        project-planning-input:
+          destination: project-planning-events
+          group: project-planning-group
+        project-planning-output:
+          destination: project-planning-events
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+logging:
+  level:
+    com.futureim.generative.im.projectplanning: DEBUG

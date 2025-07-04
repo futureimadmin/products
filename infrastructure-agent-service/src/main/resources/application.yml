@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: infrastructure-agent-service
+  cloud:
+    stream:
+      bindings:
+        infrastructure-input:
+          destination: infrastructure-events
+          group: infrastructure-group
+        infrastructure-output:
+          destination: infrastructure-events
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+
+server:
+  port: 8089
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+logging:
+  level:
+    com.futureim.generative.im.infrastructure: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/infrastructure_agent?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

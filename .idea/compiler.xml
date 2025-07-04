@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="architecture-agent-service" />
+        <module name="deployment-agent-service" />
+        <module name="quality-agent-service" />
+        <module name="requirements-agent-service" />
+        <module name="security-agent-service" />
+        <module name="design-agent-service" />
+        <module name="supervisor-agent-service" />
+        <module name="shared-model" />
+        <module name="coding-agent-service" />
+        <module name="project-planning-agent-service" />
+        <module name="testing-agent-service" />
+        <module name="infrastructure-agent-service" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

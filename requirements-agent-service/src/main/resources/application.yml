@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: requirements-agent-service
+  cloud:
+    stream:
+      bindings:
+        requirements-input:
+          destination: requirements-events
+          group: requirements-group
+        requirements-output:
+          destination: requirements-events
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+logging:
+  level:
+    com.futureim.generative.im.requirements: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/requirements_agent?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

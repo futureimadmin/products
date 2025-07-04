@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: testing-agent-service
+  cloud:
+    stream:
+      bindings:
+        testing-input:
+          destination: testing-events
+          group: testing-group
+        testing-output:
+          destination: testing-events
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+
+server:
+  port: 8085
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+logging:
+  level:
+    com.futureim.generative.im.testing: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/testing_agent?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

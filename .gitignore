@@ -1,0 +1,13 @@
+architecture-agent-service/target
+coding-agent-service/target
+deployment-agent-service/target
+design-agent-service/target
+infrastructure-agent-service/target
+project-planning-agent-service/target
+quality-agent-service/target
+requirements-agent-service/target
+security-agent-service/target
+shared-model/target
+supervisor-agent-service/target
+testing-agent-service/target
+.vscode
