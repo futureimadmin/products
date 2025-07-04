@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="voice-commerce-gateway" />
+        <module name="voice-commerce-product-service" />
+        <module name="voice-commerce-payment-service" />
+        <module name="voice-commerce-order-service" />
+        <module name="voice-commerce-auth-service" />
+        <module name="voice-commerce-cart-service" />
+        <module name="voice-commerce-search-service" />
+        <module name="voice-commerce-discovery" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="voice-commerce-auth-service" options="-parameters" />
+      <module name="voice-commerce-cart-service" options="-parameters" />
+      <module name="voice-commerce-discovery" options="-parameters" />
+      <module name="voice-commerce-gateway" options="-parameters" />
+      <module name="voice-commerce-order-service" options="-parameters" />
+      <module name="voice-commerce-payment-service" options="-parameters" />
+      <module name="voice-commerce-product-service" options="-parameters" />
+      <module name="voice-commerce-search-service" options="-parameters" />
+    </option>
+  </component>
+</project>

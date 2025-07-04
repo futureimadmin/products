@@ -1,0 +1,11 @@
+package com.futureim.voicecommerce.auth;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class VoiceCommerceAuthApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(VoiceCommerceAuthApplication.class);
+    }
+}

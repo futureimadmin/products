@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/voice-commerce/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/voice-commerce/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/voice-commerce/voice-commerce-auth-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/voice-commerce/voice-commerce-cart-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/voice-commerce/voice-commerce-discovery/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/voice-commerce/voice-commerce-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/voice-commerce/voice-commerce-order-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/voice-commerce/voice-commerce-payment-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/voice-commerce/voice-commerce-product-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/voice-commerce/voice-commerce-search-service/src/main/java" charset="UTF-8" />
+  </component>
+</project>

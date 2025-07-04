@@ -1,0 +1,121 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: voice-commerce-gateway
+  redis:
+    host: localhost
+    port: 6379
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        # Auth Service Routes (Port 8084)
+        - id: auth_route
+          uri: http://localhost:8084
+          predicates:
+            - Path=/vcom/api/v1/auth/**
+
+        # Product Service Routes (Port 8085)
+        - id: product_route
+          uri: http://localhost:8085
+          predicates:
+            - Path=/vcom/api/v1/products/**
+          filters:
+            - name: AuthenticationFilter
+
+        # Static Resources Route (Port 8085)
+        - id: static_resources_route
+          uri: http://localhost:8085
+          predicates:
+            - Path=/vcom/api/v1/images/**
+
+        # Category Service Routes (Port 8085)
+        - id: category_route
+          uri: http://localhost:8085
+          predicates:
+            - Path=/vcom/api/v1/categories/**
+          filters:
+            - name: AuthenticationFilter
+
+        # Order Service Routes (Port 8086)
+        - id: order_route
+          uri: http://localhost:8086
+          predicates:
+            - Path=/vcom/api/v1/orders/**
+          filters:
+            - name: AuthenticationFilter
+
+        # Payment Service Routes (Port 8087)
+        - id: payment_route
+          uri: http://localhost:8087
+          predicates:
+            - Path=/vcom/api/v1/payments/**
+          filters:
+            - name: AuthenticationFilter
+
+        # Cart Service Routes (Port 8088)
+        - id: cart_route
+          uri: http://localhost:8088
+          predicates:
+            - Path=/vcom/api/v1/cart/**
+          filters:
+            - name: AuthenticationFilter
+
+        # User Service Routes (Port 8089)
+        - id: user_route
+          uri: http://localhost:8089
+          predicates:
+            - Path=/vcom/api/v1/users/**
+          filters:
+            - name: AuthenticationFilter
+
+        # Search Service Routes (Port 8090)
+        - id: search_route
+          uri: http://localhost:8090
+          predicates:
+            - Path=/vcom/api/v1/search/**
+          filters:
+            - name: AuthenticationFilter
+
+        # Inventory Service Routes (Port 8091)
+        - id: inventory_route
+          uri: http://localhost:8091
+          predicates:
+            - Path=/vcom/api/v1/inventory/**
+          filters:
+            - name: AuthenticationFilter
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
+  instance:
+    preferIpAddress: true
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+
+jwt:
+  secret: ${JWT_SECRET:TmV3U2VjdXJlS2V5Rm9yVm9pY2VDb21tZXJjZUdhdGV3YXlXaXRoTWluaW11bTI1NkJpdHNGb3JITUFDU0hBMjU2QWxnb3JpdGht}
+  expiration: 86400000 # 24 hours
